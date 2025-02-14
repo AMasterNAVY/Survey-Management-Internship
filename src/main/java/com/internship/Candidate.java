@@ -1,5 +1,7 @@
 package com.internship;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Candidate {
     private String firstName;
     private String lastName;
@@ -7,13 +9,17 @@ public class Candidate {
     private String phoneNumber;
 
     public Candidate(String firstName, String lastName, String email, String phoneNumber) {
-        if (firstName == null || firstName.trim().isEmpty() || email == null || email.trim().isEmpty()) {
-            throw new IllegalArgumentException("Candidate first name or email cannot be empty or null.");
+        if (checkString(firstName) || checkString(lastName) || checkString(email) || checkString(phoneNumber)) {
+            throw new IllegalArgumentException("Candidate details must not be empty or null.");
         }
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
+    }
+
+    public boolean checkString(String str) {
+        return StringUtils.isEmpty(str);
     }
 
     public String getFirstName() {
