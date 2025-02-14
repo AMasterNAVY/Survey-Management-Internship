@@ -3,6 +3,8 @@ package com.internship;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Survey {
     private String title;
     private String topic;
@@ -12,12 +14,19 @@ public class Survey {
     protected List<Response> responses;
 
     public Survey(String title, String topic, String description) {
+        if (checkString(title) || checkString(topic) || checkString(description)) {
+            throw new IllegalArgumentException("Survey details must not be empty or null.");
+        }
         this.title = title;
         this.topic = topic;
         this.description = description;
         this.questions = new ArrayList<>();
         this.candidates = new ArrayList<>();
         this.responses = new ArrayList<>();
+    }
+
+    public boolean checkString(String str) {
+        return StringUtils.isEmpty(str);
     }
 
     public String getTitle() {

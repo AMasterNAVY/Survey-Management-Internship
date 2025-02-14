@@ -1,6 +1,9 @@
 package com.internship;
 
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Arrays;
 
 public class Question {
@@ -8,7 +11,7 @@ public class Question {
     static final List<String> ALTERNATIVES = Arrays.asList("Agree", "Slightly Agree", "Slightly Disagree", "Disagree");
 
     public Question(String text){
-        if (text == null || text.trim().isEmpty()) {
+        if (StringUtils.isEmpty(text)) {
             throw new IllegalArgumentException("Question text cannot be empty or null.");
         }
         this.text = text;
